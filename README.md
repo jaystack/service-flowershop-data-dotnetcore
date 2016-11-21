@@ -24,7 +24,3 @@ $ dotnet run
 
 ```
 
-## Try it
-
-http://localhost:9000
-
