@@ -1,4 +1,4 @@
-# flowershop-dotnetcore
+# service-flowershop-data-dotnetcore
 
 ## Installation
 
