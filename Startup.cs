@@ -24,7 +24,11 @@ namespace Service.Flowershop.Data
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            });
 
             // Add functionality to inject IOptions<T>
             services.AddOptions();
