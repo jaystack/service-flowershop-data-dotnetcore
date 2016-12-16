@@ -56,7 +56,7 @@ namespace Service.Flowershop.Data.Controllers
         [HttpGet("/[controller]/flower({fId})")]
         public Flower Flower(string fId)
         {
-            return db.GetCollection<Flower>("flowers").Find(p => p.Id == fId).FirstOrDefault();
+            return db.GetCollection<Flower>("flowers").Find(p => p._id == fId).FirstOrDefault();
         }
 
         [HttpPost("/[controller]/order")]
@@ -66,7 +66,7 @@ namespace Service.Flowershop.Data.Controllers
 
             var parsedOids = JsonConvert.DeserializeObject<string[]>(oids);
 
-            var flowers = db.GetCollection<Flower>("flowers").Find(p => parsedOids.Contains(p.Id)).ToList();
+            var flowers = db.GetCollection<Flower>("flowers").Find(p => parsedOids.Contains(p._id)).ToList();
 
             var order = new Order()
             {
