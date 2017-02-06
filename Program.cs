@@ -17,7 +17,7 @@ namespace Service.Flowershop.Data
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:3003/")
+                .UseUrls("http://*:3003/")
                 .Build();
 
             host.Run();
