@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using SystemEndpoints;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,9 +28,10 @@ namespace Service.Flowershop.Data.Controllers
 
         public DataController(ILogger<DataController> loggerAccessor, IOptions<Config> optionsAccessor)
         {
+            IStore store = new Store(optionsAccessor.Value.hosts);
             logger = loggerAccessor;
             config = optionsAccessor;
-            client = new MongoClient(config.Value.MongoUri);
+            client = new MongoClient("mongodb://" + store.GetServiceAddress(optionsAccessor.Value.MongoUri));
             db = client.GetDatabase(config.Value.MongoDatabase);
         }
 
