@@ -62,20 +62,20 @@ namespace Service.Flowershop.Data.Controllers
         }
 
         [HttpPost("/[controller]/order")]
-        public IActionResult Order(string oids, string customerName, string customerAddress)
+        public IActionResult Order(string flowers, string customerName, string customerAddress)
         {
-            logger.LogDebug("oids: " + oids);
+            logger.LogDebug("oids: " + flowers);
 
-            var parsedOids = JsonConvert.DeserializeObject<string[]>(oids);
+            var parsedOids = JsonConvert.DeserializeObject<string[]>(flowers);
 
-            var flowers = db.GetCollection<Flower>("flowers").Find(p => parsedOids.Contains(p._id)).ToList();
+            var flowerList = db.GetCollection<Flower>("flowers").Find(p => parsedOids.Contains(p._id)).ToList();
 
             var order = new Order()
             {
                 CustomerName = customerName,
                 CustomerAddress = customerAddress,
-                Orders = flowers.ToArray(),
-                OrderPrice = flowers.Sum(p => p.Price),
+                Orders = flowerList.ToArray(),
+                OrderPrice = flowerList.Sum(p => p.Price),
             };
 
             var orders = db.GetCollection<Order>("orders");
