@@ -62,7 +62,7 @@ namespace Service.Flowershop.Data.Controllers
         }
 
         [HttpPost("/[controller]/order")]
-        public IActionResult Order(string flowers, string customerName, string customerAddress)
+        public IActionResult Order(string flowers, string customerName, string customerAddress, string emailAddress = "")
         {
             logger.LogDebug("oids: " + flowers);
 
@@ -74,13 +74,34 @@ namespace Service.Flowershop.Data.Controllers
             {
                 CustomerName = customerName,
                 CustomerAddress = customerAddress,
+                EmailAddress = emailAddress,
                 Orders = flowerList.ToArray(),
                 OrderPrice = flowerList.Sum(p => p.Price),
+                TimeStamp = DateTime.Now
             };
 
             var orders = db.GetCollection<Order>("orders");
 
             orders.InsertOne(order);
+
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        
+
+        [HttpPost("/[controller]/user")]
+        public IActionResult User(string userName, string password, string email)
+        {
+            var user = new User()
+            {
+                userName = userName,
+                password = password,
+                email = email
+            };
+
+            var users = db.GetCollection<User>("users");
+
+            users.InsertOne(user);
 
             return StatusCode(StatusCodes.Status201Created);
         }
