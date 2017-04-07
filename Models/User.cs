@@ -1,20 +1,16 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Service.Flowershop.Data.Models
 {
     public class User : ModelBase
     {
-        [BsonElement("userName")]
-        public string userName { get; set; }
+        [BsonElement("UserName")]
+        public string UserName { get; set; }
 
-        [BsonElement("password")]
-        public string password { get; set; }
+        [BsonElement("Password")]
+        public string Password { get; set; }
 
-        [BsonElement("email")]
-        public string email { get; set; }
+        [BsonElement("Email")]
+        public string Email { get; set; }
     }
 }

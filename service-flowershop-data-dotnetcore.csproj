@@ -26,7 +26,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.WebApiCompatShim" Version="1.1.2" />
-    <PackageReference Include="system-endpoints" Version="1.0.1" />
+    <PackageReference Include="SystemEndpointsDotnetCore" Version="1.1.0" />
   </ItemGroup>
 
 </Project>

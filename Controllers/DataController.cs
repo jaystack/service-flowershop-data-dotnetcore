@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Servers;
 using Service.Flowershop.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using SystemEndpoints;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using SystemEndpointsDotnetCore;
 
 namespace Service.Flowershop.Data.Controllers
 {
@@ -90,13 +84,13 @@ namespace Service.Flowershop.Data.Controllers
         
 
         [HttpPost("/[controller]/user")]
-        public IActionResult User(string userName, string password, string email)
+        public new IActionResult User(string userName, string password, string email)
         {
             var user = new User()
             {
-                userName = userName,
-                password = password,
-                email = email
+                UserName = userName,
+                Password = password,
+                Email = email
             };
 
             var users = db.GetCollection<User>("users");
